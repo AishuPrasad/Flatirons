@@ -4,6 +4,7 @@ import com.company.interview.dto.FeedbackRequest;
 import com.company.interview.dto.InterviewRequest;
 import com.company.interview.entity.Interview;
 import com.company.interview.service.InterviewService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -21,14 +22,14 @@ public class InterviewController {
     }
 
     @PostMapping
-    public ResponseEntity<Interview> scheduleInterview(@RequestBody InterviewRequest request) {
+    public ResponseEntity<Interview> scheduleInterview(@Valid @RequestBody InterviewRequest request) {
         Interview interview = interviewService.scheduleInterview(request);
         return new ResponseEntity<>(interview, HttpStatus.CREATED);
     }
 
     @PostMapping("/{interviewId}/feedback")
     public ResponseEntity<Interview> submitFeedback(@PathVariable Long interviewId,
-            @RequestBody FeedbackRequest request) {
+            @Valid @RequestBody FeedbackRequest request) {
         Interview interview = interviewService.submitFeedback(interviewId, request);
         return new ResponseEntity<>(interview, HttpStatus.OK);
     }

@@ -136,5 +136,14 @@ databaseChangeLog:
             referencedTableName: interview
             referencedColumnNames: id
             constraintName: fk_feedback_interview
+  - changeSet:
+      id: add-unique-constraint-candidate-email
+      author: aishwarya
+      changes:
+        - addUniqueConstraint:
+            tableName: candidate
+            columnNames: email
+            constraintName: uk_candidate_email
+
 
 

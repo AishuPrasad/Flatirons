@@ -1,11 +1,19 @@
 package com.company.interview.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class InterviewRequest {
+    @NotNull(message = "Candidate ID is required")
     private Long candidateId;
+
+    @NotEmpty(message = "Interviewer IDs cannot be empty")
     private List<Long> interviewerIds;
+
+    @NotNull(message = "Scheduled time is required")
     private LocalDateTime scheduledAt;
 
     public InterviewRequest() {
